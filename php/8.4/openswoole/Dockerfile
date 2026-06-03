@@ -1,5 +1,5 @@
-# Release tag: php-8.4-swoole-<x.y.z>
-# Output image: ghcr.io/airygen/php:8.4-swoole-<x.y.z>
+# Release tag: php-8.4-openswoole-<x.y.z>
+# Output image: ghcr.io/airygen/php:8.4-openswoole-<x.y.z>
 # Versioning rules:
 #   MAJOR  PHP/Alpine major version change, extension removal, breaking ini change
 #   MINOR  New extension, Alpine minor bump, new optional settings
@@ -41,11 +41,11 @@ RUN set -xe && \
   docker-php-ext-configure gd --with-jpeg --with-freetype --with-webp \
   && \
   MAKEFLAGS="-j$(getconf _NPROCESSORS_ONLN)" pecl install \
-  swoole-6.2.1 \
+  openswoole-25.2.0 \
   redis-6.2.0 \
   && \
   docker-php-ext-enable \
-  swoole \
+  openswoole \
   redis \
   opcache \
   && \
