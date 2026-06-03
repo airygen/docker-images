@@ -50,6 +50,7 @@ RUN set -xe && \
   bcmath \
   exif \
   sockets \
+  pcntl \
   pdo_mysql \
   && \
   apk del --no-cache .phpize-deps .build-deps \

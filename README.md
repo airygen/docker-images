@@ -32,7 +32,7 @@ Runtime-specific additions:
 
 - **Swoole** — `swoole`, `pcntl`
 - **OpenSwoole** — `openswoole`, `pcntl`
-- **RoadRunner** — the `rr` binary, copied from the official
+- **RoadRunner** — `pcntl`, plus the `rr` binary, copied from the official
   `ghcr.io/roadrunner-server/roadrunner` multi-arch image
 - **FrankenPHP** — server is FrankenPHP/Caddy (built into the base); adds
   `pcntl`. Many extensions (`opcache`, `pdo`, `mbstring`, `openssl`, `sodium`,
