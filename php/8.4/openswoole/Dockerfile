@@ -34,8 +34,6 @@ RUN set -xe && \
   freetype \
   libzip \
   libxml2 \
-  tzdata \
-  rsyslog \
   && \
   # See https://github.com/docker-library/php/issues/912#issuecomment-559918036
   docker-php-ext-configure gd --with-jpeg --with-freetype --with-webp \
@@ -47,7 +45,6 @@ RUN set -xe && \
   docker-php-ext-enable \
   openswoole \
   redis \
-  opcache \
   && \
   docker-php-ext-install -j $(getconf _NPROCESSORS_ONLN) \
   gd \
@@ -63,7 +60,5 @@ RUN set -xe && \
   php -m
 
 RUN echo "opcache.enable_cli=1" >> "$PHP_INI_DIR/conf.d/docker-php-ext-opcache.ini"
-
-ENV TZ=Asia/Taipei
 
 WORKDIR /var/www/html
