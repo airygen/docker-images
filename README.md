@@ -19,6 +19,7 @@ pinned to **Alpine 3.23**; FrankenPHP follows whatever Alpine minor the official
 | OpenSwoole   | `8.4-openswoole-<x.y.z>`   | `8.4-openswoole-dev-<x.y.z>`   | `php:8.4-cli-alpine3.23`          |
 | RoadRunner   | `8.4-roadrunner-<x.y.z>`   | `8.4-roadrunner-dev-<x.y.z>`   | `php:8.4-cli-alpine3.23`          |
 | FrankenPHP   | `8.4-frankenphp-<x.y.z>`   | `8.4-frankenphp-dev-<x.y.z>`   | `dunglas/frankenphp:1-php8.4-alpine` |
+| FrankenPHP (Debian) | `8.4-frankenphp-bookworm-<x.y.z>` | `8.4-frankenphp-bookworm-dev-<x.y.z>` | `dunglas/frankenphp:1-php8.4-bookworm` |
 
 Source for each lives under `php/8.4/<runtime>/` (production) and
 `php/8.4/<runtime>/dev/` (development).
@@ -40,6 +41,12 @@ Runtime-specific additions:
   bundled `install-php-extensions` helper rather than `docker-php-ext-install`.
   Intended to run via Laravel Octane (`octane:start --server=frankenphp`), which
   manages its own Caddyfile — no Caddy config is baked into the image.
+  A **Debian (`bookworm`) variant** is also published. FrankenPHP runs a ZTS
+  (multi-threaded) PHP build, and musl's small default thread-stack size on
+  Alpine can segfault under worker/Octane mode; the glibc-based Debian image
+  avoids that and is the more stable choice for production, at the cost of a
+  larger image. Prefer `bookworm` for production workloads and keep the Alpine
+  image where size matters.
 
 `opcache.enable_cli=1` is enabled in every image. Containers run in **UTC**
 (no system timezone is baked in); set `TZ` / your framework's timezone per
@@ -120,6 +127,7 @@ multi-arch manifest.
 | `php-8.4-openswoole-1.0.0`   | `php/8.4/openswoole`       | `ghcr.io/airygen/php:8.4-openswoole-1.0.0`   |
 | `php-8.4-roadrunner-1.0.0`   | `php/8.4/roadrunner`       | `ghcr.io/airygen/php:8.4-roadrunner-1.0.0`   |
 | `php-8.4-frankenphp-1.0.0`   | `php/8.4/frankenphp`       | `ghcr.io/airygen/php:8.4-frankenphp-1.0.0`   |
+| `php-8.4-frankenphp-bookworm-1.0.0` | `php/8.4/frankenphp/bookworm` | `ghcr.io/airygen/php:8.4-frankenphp-bookworm-1.0.0` |
 | `php-8.4-fpm-dev-1.0.0`      | `php/8.4/fpm/dev`          | `ghcr.io/airygen/php:8.4-fpm-dev-1.0.0`      |
 
 To cut a release, create a GitHub Release whose tag matches the runtime path
