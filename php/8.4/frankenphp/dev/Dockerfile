@@ -14,7 +14,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install development tools and xdebug
 # (install-php-extensions manages its own build deps and cleanup for xdebug)
 RUN set -xe && \
-  install-php-extensions xdebug \
+  install-php-extensions xdebug pcov \
   && \
   apk add --no-cache \
   make \

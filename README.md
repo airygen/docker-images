@@ -52,6 +52,7 @@ development and CI builders:
 
 - **composer**
 - **xdebug**
+- **pcov** — fast line-coverage driver for CI test runs
 - **vim**, **bash**, **make**
 - **nodejs**, **npm**
 - **python3**, **py3-pip** — so AI agents / tooling can run Python in the dev

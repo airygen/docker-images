@@ -26,9 +26,11 @@ RUN set -xe && \
   && \
   MAKEFLAGS="-j$(getconf _NPROCESSORS_ONLN)" pecl install \
   xdebug \
+  pcov \
   && \
   docker-php-ext-enable \
   xdebug \
+  pcov \
   && \
   apk del --no-cache .phpize-deps \
   && \
